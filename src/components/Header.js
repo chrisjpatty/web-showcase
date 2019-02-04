@@ -2,26 +2,43 @@ import React, { useEffect, useState } from 'react'
 import styled from '@emotion/styled'
 
 const Header = () => {
-  const [mouse, setMouse] = useState({x:400,y:400})
-  const [screen] = useState({width: window.innerWidth, height: window.innerHeight})
+  const [mouse, setMouse] = useState({ x: 400, y: 400 })
+  const [screen] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight
+  })
   useEffect(() => {
     document.addEventListener('mousemove', setParalax)
   }, [])
 
   const setParalax = e => {
-    setMouse({x: e.clientX, y: e.clientY})
+    setMouse({ x: e.clientX, y: e.clientY })
   }
 
   return (
     <Wrapper>
-      <TextWrapper style={{
-        transform: `translate(${(mouse.x - (screen.width / 4))/ screen.width * 100 / 20}%,${mouse.y / screen.height * 100 / 17}vh)`
-      }}>
-        <Subtitle>Web designs by</Subtitle>
+      <TextWrapper
+        style={{
+          transform: `translate(${(((mouse.x - screen.width / 4) /
+            screen.width) *
+            100) /
+            20}%,${((mouse.y / screen.height) * 100) / 17}vh)`
+        }}
+      >
+        <Subtitle>
+          <span style={{ color: 'rgb(239, 83, 80)' }}>Web</span>{' '}
+          <span style={{ color: 'rgb(41, 182, 246)' }}>designs</span>{' '}
+          <span style={{ color: 'rgb(255, 238, 88)' }}>by</span>
+        </Subtitle>
       </TextWrapper>
-      <TextWrapper style={{
-        transform: `translate(${(mouse.x - (screen.width / 4)) / screen.width * 100 / 17}%,${mouse.y / screen.height * 100 / 14}vh)`
-      }}>
+      <TextWrapper
+        style={{
+          transform: `translate(${(((mouse.x - screen.width / 4) /
+            screen.width) *
+            100) /
+            17}%,${((mouse.y / screen.height) * 100) / 14}vh)`
+        }}
+      >
         <Title>Christopher Patty</Title>
       </TextWrapper>
     </Wrapper>
@@ -44,13 +61,13 @@ const Title = styled('h1')({
   margin: 0,
   paddingLeft: 10,
   fontWeight: 800,
-  lineHeight: .8,
+  lineHeight: 0.8,
   animation: 'fadeUp 800ms',
   animationDelay: '400ms',
   opacity: 0,
   animationFillMode: 'forwards',
   '@media(max-width: 600px)': {
-    fontSize: '8vh',
+    fontSize: '8vh'
     // paddingLeft: 0
   }
 })
@@ -65,7 +82,7 @@ const Subtitle = styled('span')({
   opacity: 0,
   animationFillMode: 'forwards',
   '@media(max-width: 600px)': {
-    fontSize: '5vh',
+    fontSize: '5vh'
     // paddingLeft: 0
   }
 })
